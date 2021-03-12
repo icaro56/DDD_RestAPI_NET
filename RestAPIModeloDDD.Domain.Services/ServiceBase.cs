@@ -7,7 +7,7 @@ namespace RestAPIModeloDDD.Domain.Services
 {
     public class ServiceBase<TEntity> : IServiceBase<TEntity> where TEntity : class
     {
-        private readonly IRepositoryBase<TEntity> repository;
+        protected readonly IRepositoryBase<TEntity> repository;
 
         public ServiceBase(IRepositoryBase<TEntity> repository)
         {

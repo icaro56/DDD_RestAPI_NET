@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace RestAPIModeloDDD.Application.Dtos
 {
-    public class ProductDto
+    public class ClientDTO
     {
         public int Id { get; set; }
 
         public string Name { get; set; }
 
-        public decimal Price { get; set; }
+        public string LastName { get; set; }
+
+        public string Email { get; set; }
 
         public bool Active { get; set; }
     }

@@ -54,5 +54,21 @@ namespace RestAPIModeloDDD.Domain.Notifications
 
             return true;
         }
+
+        public bool ValidatePropertyDecimal(decimal value, string nameProperty)
+        {
+            if (value < 1 || string.IsNullOrWhiteSpace(nameProperty))
+            {
+                Notifications.Add(new Notify
+                {
+                    Message = "Campo Obrigatório",
+                    PropertyName = nameProperty
+                });
+
+                return false;
+            }
+
+            return true;
+        }
     }
 }

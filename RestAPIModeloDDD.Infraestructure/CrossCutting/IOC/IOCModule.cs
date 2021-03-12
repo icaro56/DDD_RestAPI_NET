@@ -20,14 +20,14 @@ namespace RestAPIModeloDDD.Infraestructure.CrossCutting.IOC
         {
             services.AddSingleton(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
 
-            services.RegisterAsImplementedInterfaces<ApplicationServiceCliente>(ServiceLifetime.Singleton);
-            services.RegisterAsImplementedInterfaces<ApplicationServiceProduto>(ServiceLifetime.Singleton);
-            services.RegisterAsImplementedInterfaces<ServiceCliente>(ServiceLifetime.Singleton);
-            services.RegisterAsImplementedInterfaces<ServiceProduto>(ServiceLifetime.Singleton);
-            services.RegisterAsImplementedInterfaces<RepositoryCliente>(ServiceLifetime.Singleton);
-            services.RegisterAsImplementedInterfaces<RepositoryProduto>(ServiceLifetime.Singleton);
-            services.RegisterAsImplementedInterfaces<MapperCliente>(ServiceLifetime.Singleton);
-            services.RegisterAsImplementedInterfaces<MapperProduto>(ServiceLifetime.Singleton);
+            services.RegisterAsImplementedInterfaces<ApplicationServiceClient>(ServiceLifetime.Singleton);
+            services.RegisterAsImplementedInterfaces<ApplicationServiceProduct>(ServiceLifetime.Singleton);
+            services.RegisterAsImplementedInterfaces<ServiceClient>(ServiceLifetime.Singleton);
+            services.RegisterAsImplementedInterfaces<ServiceProduct>(ServiceLifetime.Singleton);
+            services.RegisterAsImplementedInterfaces<RepositoryClient>(ServiceLifetime.Singleton);
+            services.RegisterAsImplementedInterfaces<RepositoryProduct>(ServiceLifetime.Singleton);
+            services.RegisterAsImplementedInterfaces<MapperClient>(ServiceLifetime.Singleton);
+            services.RegisterAsImplementedInterfaces<MapperProduct>(ServiceLifetime.Singleton);
         }
     }
 }

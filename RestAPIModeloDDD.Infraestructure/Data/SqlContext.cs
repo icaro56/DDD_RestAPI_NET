@@ -17,27 +17,26 @@ namespace RestAPIModeloDDD.Infraestructure.Data
         public SqlContext(DbContextOptions<SqlContext> options)
             : base(options)
         {
-            
             // Verifica se há as tabelas, se não existe cria elas
             Database.EnsureCreated();
         }
 
-        public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Client> Clients { get; set; }
 
-        public DbSet<Produto> Produtos { get; set; }
+        public DbSet<Product> Produts { get; set; }
 
         public override int SaveChanges()
         {
-            foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("DataCadastro") != null))
+            foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("RegistrationDate") != null))
             {
                 if (entry.State == EntityState.Added)
                 {
-                    entry.Property("DataCadastro").CurrentValue = DateTime.Now;
+                    entry.Property("RegistrationDate").CurrentValue = DateTime.Now;
                 }
 
                 if (entry.State == EntityState.Modified)
                 {
-                    entry.Property("DataCadastro").IsModified = false;
+                    entry.Property("RegistrationDate").IsModified = false;
                 }
             }
 
