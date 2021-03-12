@@ -32,7 +32,7 @@ namespace RestAPIModeloDDD.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] ProductDto productDto)
+        public async Task<ActionResult> Post([FromBody] ProductDTO productDto)
         {
             try
             {
@@ -50,7 +50,7 @@ namespace RestAPIModeloDDD.API.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult> Put([FromBody] ProductDto productDto)
+        public async Task<ActionResult> Put([FromBody] ProductDTO productDto)
         {
             try
             {
@@ -68,7 +68,7 @@ namespace RestAPIModeloDDD.API.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> Delete([FromBody] ProductDto productDto)
+        public async Task<ActionResult> Delete([FromBody] ProductDTO productDto)
         {
             try
             {

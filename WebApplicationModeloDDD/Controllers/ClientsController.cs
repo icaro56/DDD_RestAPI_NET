@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using RestAPIModeloDDD.Application.Dtos;
 using RestAPIModeloDDD.Application.Interfaces;
 using RestAPIModeloDDD.Domain.Entities;
 using RestAPIModeloDDD.Infraestructure.Data;
@@ -14,19 +16,20 @@ namespace WebApplicationModeloDDD.Controllers
     public class ClientsController : Controller
     {
         private readonly IApplicationServiceClient applicationServiceClient;
-        private readonly IMapperClient mapperClient;
+        private readonly IMapper mapper;
 
-        public ClientsController(IApplicationServiceClient applicationServiceClient, IMapperClient mapperClient)
+        public ClientsController(IApplicationServiceClient applicationServiceClient, IMapper mapper)
         {
             this.applicationServiceClient = applicationServiceClient;
-            this.mapperClient = mapperClient;
+            this.mapper = mapper;
         }
 
         // GET: Clientes
         public async Task<IActionResult> Index()
         {
             var list = await applicationServiceClient.GetAll();
-            return View(mapperClient.MapperListClient(list));
+            IEnumerable<Client> newList = mapper.Map<IEnumerable<ClientDTO>, IEnumerable<Client>>(list);
+            return View(newList);
         }
 
         // GET: Clientes/Details/5
@@ -38,7 +41,7 @@ namespace WebApplicationModeloDDD.Controllers
             }
 
             var clientDto = await applicationServiceClient.GetById((int)id);
-            var client = mapperClient.MapperDTOToEntity(clientDto);
+            var client = mapper.Map<Client>(clientDto);
             if (client == null)
             {
                 return NotFound();
@@ -62,7 +65,7 @@ namespace WebApplicationModeloDDD.Controllers
         {
             if (ModelState.IsValid)
             {
-                await applicationServiceClient.Add(mapperClient.MapperEntityToDTO(client));
+                await applicationServiceClient.Add(mapper.Map<ClientDTO>(client));
                 return RedirectToAction(nameof(Index));
             }
             return View(client);
@@ -77,7 +80,7 @@ namespace WebApplicationModeloDDD.Controllers
             }
 
             var clientDto = await applicationServiceClient.GetById((int)id);
-            var client = mapperClient.MapperDTOToEntity(clientDto);
+            var client = mapper.Map<Client>(clientDto);
             if (client == null)
             {
                 return NotFound();
@@ -101,7 +104,7 @@ namespace WebApplicationModeloDDD.Controllers
             {
                 try
                 {
-                    await applicationServiceClient.Update(mapperClient.MapperEntityToDTO(client));
+                    await applicationServiceClient.Update(mapper.Map<ClientDTO>(client));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -128,7 +131,7 @@ namespace WebApplicationModeloDDD.Controllers
             }
 
             var clientDto = await applicationServiceClient.GetById((int)id);
-            var client = mapperClient.MapperDTOToEntity(clientDto);
+            var client = mapper.Map<Client>(clientDto);
             if (client == null)
             {
                 return NotFound();

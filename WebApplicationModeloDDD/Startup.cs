@@ -1,9 +1,12 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RestAPIModeloDDD.Application.Dtos;
+using RestAPIModeloDDD.Domain.Entities;
 using RestAPIModeloDDD.Infraestructure.CrossCutting.IOC;
 using RestAPIModeloDDD.Infraestructure.Data;
 using System;
@@ -31,7 +34,20 @@ namespace WebApplicationModeloDDD
             var iocModule = new IOCModule();
             iocModule.Configure(services);
 
+            ConfigureMappers(services);
+
             services.AddControllersWithViews();
+        }
+
+        private void ConfigureMappers(IServiceCollection services)
+        {
+            var config = new AutoMapper.MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Product, ProductDTO>().ReverseMap();
+                cfg.CreateMap<Client, ClientDTO>().ReverseMap();
+            });
+            IMapper mapper = config.CreateMapper();
+            services.AddSingleton(mapper);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

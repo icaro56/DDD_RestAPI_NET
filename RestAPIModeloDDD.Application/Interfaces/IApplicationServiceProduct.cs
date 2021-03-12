@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RestAPIModeloDDD.Application.Interfaces
 {
-    public interface IApplicationServiceProduct : IApplicationServiceBase<ProductDto>
+    public interface IApplicationServiceProduct : IApplicationServiceBase<ProductDTO>
     {
         Task AddProduct(Product product);
 

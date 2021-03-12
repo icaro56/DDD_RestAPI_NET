@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using RestAPIModeloDDD.Application.Dtos;
 using RestAPIModeloDDD.Application.Interfaces;
 using RestAPIModeloDDD.Domain.Entities;
 using RestAPIModeloDDD.Infraestructure.Data;
@@ -14,20 +15,21 @@ namespace WebApplicationModeloDDD.Controllers
     public class ProductsController : Controller
     {
         private readonly IApplicationServiceProduct applicationServiceProduct;
-        private readonly IMapperProduct mapperProduct;
+        private readonly IMapper mapper;
 
-        public ProductsController(IApplicationServiceProduct applicationServiceProduct, IMapperProduct mapperProduct)
+        public ProductsController(IApplicationServiceProduct applicationServiceProduct, IMapper mapper)
         {
             this.applicationServiceProduct = applicationServiceProduct;
-            this.mapperProduct = mapperProduct;
+            this.mapper = mapper;
         }
 
         // GET: Produtos
         public async Task<IActionResult> Index()
         {
             var list = await applicationServiceProduct.GetAll();
+            IEnumerable<Product> newList = mapper.Map<IEnumerable<ProductDTO>, IEnumerable<Product>>(list);
 
-            return View(mapperProduct.MapperListProducts(list));
+            return View(newList);
         }
 
         // GET: Produtos/Details/5
@@ -39,7 +41,7 @@ namespace WebApplicationModeloDDD.Controllers
             }
 
             var produtoDto = await applicationServiceProduct.GetById((int)id);
-            var produto = mapperProduct.MapperDTOToEntity(produtoDto);
+            var produto = mapper.Map<Product>(produtoDto);
 
             if (produto == null)
             {
@@ -92,7 +94,7 @@ namespace WebApplicationModeloDDD.Controllers
             }
 
             var produtoDto = await applicationServiceProduct.GetById((int)id);
-            var produto = mapperProduct.MapperDTOToEntity(produtoDto);
+            var produto = mapper.Map<Product>(produtoDto);
             if (produto == null)
             {
                 return NotFound();
@@ -155,7 +157,7 @@ namespace WebApplicationModeloDDD.Controllers
             }
 
             var productDto = await applicationServiceProduct.GetById((int)id);
-            var product = mapperProduct.MapperDTOToEntity(productDto);
+            var product = mapper.Map<Product>(productDto);
             if (product == null)
             {
                 return NotFound();

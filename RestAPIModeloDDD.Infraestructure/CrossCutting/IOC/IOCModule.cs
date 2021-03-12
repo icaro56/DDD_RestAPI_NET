@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using RestAPIModeloDDD.Application;
-using RestAPIModeloDDD.Application.Mapper;
 using RestAPIModeloDDD.Domain.Core.Interfaces.Repositories;
 using RestAPIModeloDDD.Domain.Services;
 using RestAPIModeloDDD.Infraestructure.CrossCutting.IOC.Base;
@@ -26,8 +25,6 @@ namespace RestAPIModeloDDD.Infraestructure.CrossCutting.IOC
             services.RegisterAsImplementedInterfaces<ServiceProduct>(ServiceLifetime.Singleton);
             services.RegisterAsImplementedInterfaces<RepositoryClient>(ServiceLifetime.Singleton);
             services.RegisterAsImplementedInterfaces<RepositoryProduct>(ServiceLifetime.Singleton);
-            services.RegisterAsImplementedInterfaces<MapperClient>(ServiceLifetime.Singleton);
-            services.RegisterAsImplementedInterfaces<MapperProduct>(ServiceLifetime.Singleton);
         }
     }
 }

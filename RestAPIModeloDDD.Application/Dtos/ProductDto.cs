@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RestAPIModeloDDD.Application.Dtos
 {
-    public class ProductDto
+    public class ProductDTO
     {
         public int Id { get; set; }
 
