@@ -11,5 +11,7 @@ namespace RestAPIModeloDDD.Application.Interfaces
         IEnumerable<ProductDto> MapperListProdutosDto(IEnumerable<Produto> clientes);
 
         ProductDto MapperEntityToDto(Produto cliente);
+
+        IEnumerable<Produto> MapperListProdutos(IEnumerable<ProductDto> produtos);
     }
 }

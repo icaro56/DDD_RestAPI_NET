@@ -17,7 +17,8 @@ namespace RestAPIModeloDDD.Application.Mapper
             {
                 Id = produtoDto.Id,
                 Name = produtoDto.Nome,
-                Price = produtoDto.Valor
+                Price = produtoDto.Valor,
+                Active = produtoDto.Ativo
             };
 
             return produto;
@@ -29,7 +30,8 @@ namespace RestAPIModeloDDD.Application.Mapper
             {
                 Id = produto.Id,
                 Nome = produto.Name,
-                Valor = produto.Price
+                Valor = produto.Price,
+                Ativo = produto.Active
             };
 
             return produtoDto;
@@ -41,10 +43,24 @@ namespace RestAPIModeloDDD.Application.Mapper
             {
                 Id = p.Id,
                 Nome = p.Name,
-                Valor = p.Price
+                Valor = p.Price,
+                Ativo = p.Active
             });
 
             return dto;
+        }
+
+        public IEnumerable<Produto> MapperListProdutos(IEnumerable<ProductDto> produtos)
+        {
+            var entities = produtos.Select(p => new Produto
+            {
+                Id = p.Id,
+                Name = p.Nome,
+                Price = p.Valor,
+                Active = p.Ativo
+            });
+
+            return entities;
         }
     }
 }

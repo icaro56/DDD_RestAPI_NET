@@ -13,5 +13,7 @@ namespace RestAPIModeloDDD.Application.Dtos
         public string Nome { get; set; }
 
         public decimal Valor { get; set; }
+
+        public bool Ativo { get; set; }
     }
 }

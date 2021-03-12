@@ -20,7 +20,8 @@ namespace RestAPIModeloDDD.Application.Mapper
                 Id = clienteDto.Id,
                 Name = clienteDto.Nome,
                 Sobrenome = clienteDto.Sobrenome,
-                Email = clienteDto.Email
+                Email = clienteDto.Email,
+                Ativo = clienteDto.Ativo
             };
 
             return cliente;
@@ -33,7 +34,8 @@ namespace RestAPIModeloDDD.Application.Mapper
                 Id = cliente.Id,
                 Nome = cliente.Name,
                 Sobrenome = cliente.Sobrenome,
-                Email = cliente.Email
+                Email = cliente.Email,
+                Ativo = cliente.Ativo
             };
 
             return clienteDto;
@@ -46,10 +48,25 @@ namespace RestAPIModeloDDD.Application.Mapper
                 Id = c.Id, 
                 Nome = c.Name, 
                 Sobrenome = c.Sobrenome, 
-                Email = c.Email 
+                Email = c.Email,
+                Ativo = c.Ativo
             });
 
             return dto;
+        }
+
+        public IEnumerable<Cliente> MapperListCliente(IEnumerable<ClienteDto> clientes)
+        {
+            var entities = clientes.Select(c => new Cliente
+            {
+                Id = c.Id,
+                Name = c.Nome,
+                Sobrenome = c.Sobrenome,
+                Email = c.Email,
+                Ativo = c.Ativo
+            });
+
+            return entities;
         }
     }
 }
