@@ -25,6 +25,8 @@ namespace RestAPIModeloDDD.Infraestructure.Data
 
         public DbSet<Product> Produts { get; set; }
 
+        public DbSet<User> Users { get; set; }
+
         public override int SaveChanges()
         {
             foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("RegistrationDate") != null))

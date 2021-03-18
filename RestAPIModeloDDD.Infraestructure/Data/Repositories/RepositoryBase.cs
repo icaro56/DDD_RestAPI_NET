@@ -13,7 +13,7 @@ namespace RestAPIModeloDDD.Infraestructure.Data.Repositories
     public class RepositoryBase<TEntity> : IRepositoryBase<TEntity>, IDisposable where TEntity : class
     {
         //private readonly SqlContext sqlContext;
-        private readonly DbContextOptions<SqlContext> OptionsBuilder;
+        protected readonly DbContextOptions<SqlContext> OptionsBuilder;
 
         public RepositoryBase(/*SqlContext sqlContext*/)
         {

@@ -21,10 +21,13 @@ namespace RestAPIModeloDDD.Infraestructure.CrossCutting.IOC
 
             services.RegisterAsImplementedInterfaces<ApplicationServiceClient>(ServiceLifetime.Singleton);
             services.RegisterAsImplementedInterfaces<ApplicationServiceProduct>(ServiceLifetime.Singleton);
+            services.RegisterAsImplementedInterfaces<ApplicationServiceUser>(ServiceLifetime.Singleton);
             services.RegisterAsImplementedInterfaces<ServiceClient>(ServiceLifetime.Singleton);
             services.RegisterAsImplementedInterfaces<ServiceProduct>(ServiceLifetime.Singleton);
+            services.RegisterAsImplementedInterfaces<ServiceUser>(ServiceLifetime.Singleton);
             services.RegisterAsImplementedInterfaces<RepositoryClient>(ServiceLifetime.Singleton);
             services.RegisterAsImplementedInterfaces<RepositoryProduct>(ServiceLifetime.Singleton);
+            services.RegisterAsImplementedInterfaces<RepositoryUser>(ServiceLifetime.Singleton);
         }
     }
 }
